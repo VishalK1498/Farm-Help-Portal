@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a - बळीराजाचा सोबती</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --dark-green: #1b5e20;
+            --accent: #ffd600;
+            --light-bg: #f4f7f4;
+            --blue: #1565c0;
+            --orange: #e65100;
+            --red: #c62828;
+            --gradient-green: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+            margin: 0;
+            background: var(--light-bg);
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--dark-green);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            margin: 5px;
+            font-weight: 500;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+         /* Nav madhlya active button cha style */
+
+    background-color: orange!important; /* Pivla rang */
+    color: var(--dark-green) !important;       /* Hirva मजकूर */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-bottom: 3px solid #fff;
+}
+        
+
+        /* Layout */
+        .page { display: none; animation: fadeIn 0.5s; }
+        .active-page { display: block; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 20px; }
+
+        /* Home Page */
+        #home { text-align: center; }
+        .home-image-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 5px solid white;
+        }
+        .home-image-container img { 
+            width: 100%; 
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        .slogan { font-size: 2rem; color: var(--dark-green); margin: 25px 0; font-weight: bold; }
+
+        /* Yojna Tabs */
+        .tab-wrapper { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab-btn {
+            padding: 12px 25px; border: none; border-radius: 8px;
+            cursor: pointer; font-weight: bold; background: #ccc; transition: 0.3s;
+        }
+        .tab-btn.active-tab { background: var(--primary-green); color: white; }
+
+        .yojna-content { display: none; }
+        .show-yojna { display: block; animation: fadeIn 0.4s; }
+
+        /* Card Design */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .content-card {
+            background: white; padding: 20px; border-radius: 12px;
+            border-top: 5px solid var(--primary-green);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .content-card h3 { color: var(--dark-green); margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .label { font-weight: bold; color: #555; margin-top: 8px; display: block; font-size: 0.9rem; }
+        .detail-text { font-size: 0.95rem; margin: 5px 0 15px 0; line-height: 1.5; }
+
+        .apply-link {
+            display: block; background: var(--blue); color: white;
+            text-decoration: none; padding: 10px; text-align: center;
+            border-radius: 6px; font-weight: bold; margin-top: auto;
+        }
+
+        /* --- New Attractive Contact Form CSS --- */
+        .attractive-form-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        .attractive-form-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 8px;
+            background: var(--gradient-green);
+        }
+        .form-header { text-align: center; margin-bottom: 30px; }
+        .form-header h2 { color: var(--dark-green); margin: 0; font-size: 1.8rem; }
+        .form-header p { color: #666; font-size: 0.95rem; margin-top: 8px; }
+
+        .input-group { position: relative; margin-bottom: 25px; }
+        .input-group label {
+            display: block; font-weight: 600; color: #444; margin-bottom: 8px; font-size: 0.9rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #edf2f7;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background: #fcfcfc;
+            font-family: inherit;
+        }
+        .form-control:focus {
+            border-color: var(--primary-green);
+            background: #fff;
+            outline: none;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(27, 94, 32, 0.3);
+        }
+        .submit-btn:active { transform: translateY(0); }
+        
+        .loader {
+            width: 22px; height: 22px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            display: none;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        footer { background: var(--dark-green); color: white; text-align: center; padding: 25px; margin-top: 40px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+   .attractive-form-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.input-group {
+    margin-bottom: 15px;
+}
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.submit-btn {
+    background: var(--gradient-green);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+}
+   
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a onclick="showPage('home', event)" class="active">मुख्य पृष्ठ</a>
+        <a onclick="showPage('contact', event)">संपर्क</a>
+        <a onclick="showPage('yojna', event)">सरकारी योजना</a>
+        <a onclick="showPage('margdarshan', event)">पीक मार्गदर्शन</a>
+        <a onclick="showPage('bajarbhav', event)">मदत केंद</a>
+        <a onclick="showPage('avjare', event)">आधुनिक अवजारे</a>
+    </nav>
+
+    <div id="home" class="page active-page container">
+        <div class="home-image-container">
+<img src="https://www1.djicdn.com/cms/uploads/fd7e1258d4e8b9fb2330f68b92170422.gif" alt="Agroguide - आधुनिक शेती ड्रोन"> 
+       </div>
+        <div class="slogan">"आजचे मार्गदर्शन, उद्याची समृद्धी"</div>
+        <p style="font-size: 1.1rem;">शेतकरी आणि सर्व सामान्य नागरिकांसाठी सरकारी योजनांची माहिती देणारे विश्वासार्ह पोर्टल.</p>
+    </div>
+
+    <div id="yojna" class="page container">
+        <h2 style="text-align: center; color: var(--dark-green);">📜 सर्व सरकारी योजना माहिती केंद्र</h2>
+        
+        <div class="tab-wrapper">
+            <button class="tab-btn active-tab" onclick="toggleYojna('sheti-tab', event)">🚜 शेती सहाय्यक योजना</button>
+            <button class="tab-btn" onclick="toggleYojna('arthik-tab', event)">💰 आर्थिक मदत योजना</button>
+            <button class="tab-btn" onclick="toggleYojna('medical-tab', event)">🏥 आरोग्य सेवा योजना</button>
+        </div>
+
+        <div id="sheti-tab" class="yojna-content show-yojna">
+            <div class="grid-container">
+                <div class="content-card">
+                    <h3>महाडीबीटी (MahaDBT) कृषी अनुदान</h3>
+                    <p class="detail-text">अवजारे, सिंचन साधने, बियाणे, आणि शेडनेटसाठी ५०% ते ८०% अनुदान.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">७/१२ उताराधारक शेतकरी.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">आधार, ७/१२, ८-अ, बँक पासबुक, कोटेशन.</p>
+                    <a href="https://mahadbt.maharashtra.gov.in/" target="_blank" class="apply-link">येथे अर्ज करा</a>
+                </div>
+                <div class="content-card">
+                    <h3>पीएम किसान सन्मान निधी योजना</h3>
+                    <p class="detail-text">पात्र शेतकऱ्यांना वार्षिक ₹६,००० (हप्त्यांमध्ये) थेट बँक खात्यात मदत.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">स्वतःच्या नावावर शेती असणारे अल्पभूधारक शेतकरी.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">आधार कार्ड, बँक खाते, सातबारा.</p>
+                    <a href="https://pmkisan.gov.in/" target="_blank" class="apply-link">येथे अर्ज करा</a>
+                </div>
+                <div class="content-card">
+                    <h3>नमो शेतकरी महासन्मान निधी योजना</h3>
+                    <p class="detail-text">राज्य सरकारकडून अतिरिक्त वार्षिक ₹६,००० मदत (एकूण ₹१२,०००).</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">पीएम किसान योजनेचे सर्व पात्र लाभार्थी.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">आधार कार्ड, सातबारा नोंद.</p>
+                    <a href="https://nsmny.mahait.org/" target="_blank" class="apply-link">येथे अर्ज करा</a>
+                </div>
+                <div class="content-card">
+                    <h3>मुख्यमंत्री शाश्वत कृषी सिंचन योजना</h3>
+                    <p class="detail-text">शेततळे अस्तरीकरण आणि ठिबक सिंचनासाठी विशेष अनुदान.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">सिंचनाची सोय करू इच्छिणारे शेतकरी.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">७/१२, वीज बिल, साहित्याचे बिल.</p>
+                    <a href="https://mahadbt.maharashtra.gov.in/" target="_blank" class="apply-link">येथे अर्ज करा</a>
+                </div>
+                <div class="content-card">
+                    <h3>राज्य सहाय्यित पिक विमा योजना</h3>
+                    <p class="detail-text">नैसर्गिक आपत्तीत पिकांचे नुकसान झाल्यास आर्थिक संरक्षण.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">पीक घेणारे सर्व शेतकरी (केवळ ₹१ शुल्क).</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">पिक पेरा, आधार, बँक पासबुक.</p>
+                    <a href="https://www.pmfby.gov.in/" target="_blank" class="apply-link">येथे अर्ज करा</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="arthik-tab" class="yojna-content">
+            <div class="grid-container">
+                <div class="content-card" style="border-top-color: var(--orange);">
+                    <h3>मुख्यमंत्री माझी लाडकी बहीण योजना</h3>
+                    <p class="detail-text">महाराष्ट्रातील महिलांना दरमह्र ₹१,५०० आर्थिक मदत.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">२१-६५ वयोगटातील विवाहित/विधवा/गरजू महिला.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">आधार, रेशन कार्ड, अधिवास, बँक खाते.</p>
+                    <a href="https://ladakibahin.maharashtra.gov.in/" target="_blank" class="apply-link" style="background: var(--orange);">येथे अर्ज करा</a>
+                </div>
+                <div class="content-card" style="border-top-color: var(--orange);">
+                    <h3>संजय गांधी निराधार योजना</h3>
+                    <p class="detail-text">निराधार, वृद्ध आणि अपंगांना मासिक अनुदान (₹१,२००+).</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">निराधार किंवा ६५ वर्षांवरील अल्प उत्पन्न नागरिक.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">उत्पन्न दाखला, वय दाखला, आधार.</p>
+                    <a href="https://sjsa.maharashtra.gov.in/" target="_blank" class="apply-link" style="background: var(--orange);">येथे अर्ज करा</a>
+                </div>
+                <div class="content-card" style="border-top-color: var(--orange);">
+                    <h3>सुकन्या समृद्धी योजना</h3>
+                    <p class="detail-text">मुलींच्या शिक्षणासाठी आणि लग्नासाठी टप्प्याटप्प्याने बचत.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">१० वर्षांच्या आतील मुलींच्या नावे खाते.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">मुलीचा जन्म दाखला, पालकांचे आधार.</p>
+                    <a href="https://www.indiapost.gov.in/" target="_blank" class="apply-link" style="background: var(--orange);">अधिक माहिती</a>
+                </div>
+                <div class="content-card" style="border-top-color: var(--orange);">
+                    <h3>प्रधानमंत्री मुद्रा योजना</h3>
+                    <p class="detail-text">सूक्ष्म व्यवसायासाठी ₹१० लाखांपर्यंत विनाहमी कर्ज.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">उद्योजक बनू इच्छिणारे नागरिक.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">पॅन, आधार, व्यवसाय आराखडा.</p>
+                    <a href="https://www.mudra.org.in/" target="_blank" class="apply-link" style="background: var(--orange);">कर्जासाठी अर्ज</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="medical-tab" class="yojna-content">
+            <div class="grid-container">
+                <div class="content-card" style="border-top-color: var(--red);">
+                    <h3>MJPJAY आणि आयुष्मान भारत</h3>
+                    <p class="detail-text">राज्यातील सर्व नागरिकांना ५ लाखांपर्यंतचे मोफत कॅशलेस उपचार.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">उत्पन्नाची अट शिथिल, सर्व महाराष्ट्र नागरिक पात्र.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">आधार कार्ड, रेशन कार्ड (पिवळे/केशरी/पांढरे).</p>
+                    <a href="https://www.jeevandayee.gov.in/" target="_blank" class="apply-link" style="background: var(--red);">अधिक माहिती</a>
+                </div>
+                <div class="content-card" style="border-top-color: var(--red);">
+                    <h3>PM-JAY (ज्येष्ठ नागरिक)</h3>
+                    <p class="detail-text">७० वर्ष आणि त्याहून अधिक वयाच्या सर्व ज्येष्ठांना ५ लाखांचे मोफत उपचार.</p>
+                    <span class="label">✅ पात्रता:</span> <p class="detail-text">७० वर्षे पूर्ण झालेले सर्व ज्येष्ठ नागरिक.</p>
+                    <span class="label">📁 कागदपत्रे:</span> <p class="detail-text">आधार कार्ड (वयाचा पुरावा).</p>
+                    <a href="https://pmjay.gov.in/" target="_blank" class="apply-link" style="background: var(--red);">नोंदणी करा</a>
+                </div>
+                <div class="content-card" style="border-top-color: var(--red);">
+                    <h3>प्रधानमंत्री जन औषधी योजना</h3>
+                    <p class="detail-text">उच्च दर्जाची जेनेरिक औषधे ८०% ते ९०% स्वस्त दरात मिळतात.</p>
+                    <span class="label">✅ फायदा:</span> <p class="detail-text">सर्व सामान्य नागरिकांसाठी स्वस्त औषधे.</p>
+                    <a href="http://janaushadhi.gov.in/" target="_blank" class="apply-link" style="background: var(--red);">केंद्र शोधा</a>
+                </div>
+                <div class="content-card" style="border-top-color: var(--red);">
+                    <h3>माता आणि बाल आरोग्य (NHM)</h3>
+                    <p class="detail-text">प्रसूतीसाठी आर्थिक मदत आणि बालकांसाठी मोफत लसीकरण कार्यक्रम.</p>
+                    <span class="label">✅ योजना:</span> <p class="detail-text">जननी सुरक्षा योजना आणि मिशन इंद्रधनुष्य.</p>
+                    <a href="https://nhm.gov.in/" target="_blank" class="apply-link" style="background: var(--red);">माहिती पहा</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="contact" class="page container">
+    <div class="attractive-form-card">
+        <div class="form-header">
+            <h2 style="color: var(--primary-green);"><i class="fas fa-seedling"></i> शेती सल्ला केंद्र</h2>
+            <p>तुमची माहिती भरा आणि प्रश्न निवडा.</p>
+        </div>
+        
+        <form id="agriForm">
+            <div class="input-group">
+                <label>शेतकऱ्याचे नाव</label>
+                <input type="text" id="name" class="form-control" placeholder="तुमचे पूर्ण नाव टाका" required>
+            </div>
+            
+            <div class="input-group">
+                <label>मोबाईल नंबर</label>
+                <input type="tel" id="mobile" class="form-control" placeholder="१० अंकी नंबर" maxlength="10" required>
+            </div>
+
+            <div class="input-group">
+                <label>प्रश्न निवडा</label>
+                <select id="questionSelect" class="form-control" onchange="showAutoAnswer()" required style="border: 2px solid var(--primary-green);">
+                    <option value="">-- प्रश्न निवडा --</option>
+                    <option value="low_cost">कमी खर्चात शेती कशी करावी?</option>
+                    <option value="soil_test">माती परीक्षण कोठे करावे?</option>
+                    <option value="organic">सेंद्रिय शेती कशी करावी?</option>
+                    <option value="pest_mgmt">पिकांवरील कीड कमी खर्चात कशी रोखावी?</option>
+                </select>
+            </div>
+
+            <div id="autoAnswerBox" style="display:none; background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 15px; margin: 15px 0; border-radius: 8px;">
+                <strong style="color: #1b5e20;">उत्तर:</strong> 
+                <p id="answerText" style="margin: 5px 0; font-size: 15px; color: #333; line-height: 1.6;"></p>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="handleAgriSubmit()" style="width: 100%; margin-top: 10px;">
+                <span id="btnText">माहिती जतन करा</span>
+            </button>
+
+            <div id="successMessage" style="display:none; color: #2e7d32; text-align: center; margin-top: 15px; font-weight: bold;">
+                तुमची माहिती यशस्वीरित्या पाठवली गेली आहे!
+            </div>
+        </form>
+    </div>
+</div>
+
+
+     <div id="margdarshan" class="page container">
+        <style>
+        :root { --primary: #1b5e20; --accent: #ff6f00; --light-green: #c8e6c9; --dark-green: #003300; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #e8f5e9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid var(--primary); }
+        h1 { text-align: center; color: var(--primary); font-size: 2.5em; margin-bottom: 5px; }
+        .tagline { text-align: center; color: #666; margin-bottom: 30px; }
+        .step-label { font-weight: bold; margin-top: 25px; display: block; color: var(--dark-green); font-size: 1.2em; border-left: 5px solid var(--accent); padding-left: 10px; margin-bottom: 15px; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 25px; }
+        .choice-btn { padding: 15px 25px; border: 2px solid var(--primary); background: white; color: var(--primary); cursor: pointer; border-radius: 30px; font-weight: bold; transition: 0.3s; }
+        .choice-btn.active { background: var(--primary); color: white; transform: translateY(-2px); }
+        .hidden { display: none; }
+        .info-card { border: 1px solid var(--light-green); margin-top: 15px; border-radius: 12px; overflow: hidden; }
+        .card-header { background: var(--light-green); padding: 18px; cursor: pointer; font-weight: bold; font-size: 20px; color: var(--dark-green); display: flex; justify-content: space-between; align-items: center; }
+        .card-body { padding: 20px; display: none; background: #fff; border-top: 1px solid #eee; }
+        .detail-item { margin-bottom: 15px; padding: 15px; border-radius: 8px; background: #fafafa; border-left: 5px solid var(--primary); }
+        .detail-label { color: #d84315; font-weight: bold; display: block; margin-bottom: 5px; }
+        .detail-text { margin: 0; line-height: 1.8; text-align: justify; }
+        
+        /* विशेष बटणे */
+        .special-btn { background: #ff6f00; color: white; border: none; padding: 18px; border-radius: 50px; font-size: 1.2em; cursor: pointer; font-weight: bold; display: block; width: 100%; margin: 20px 0; transition: 0.3s; box-shadow: 0 4px 10px rgba(255,111,0,0.3); }
+        .special-btn.biz { background: #0277bd; box-shadow: 0 4px 10px rgba(2,119,189,0.3); }
+
+        .exhibition-card { display: flex; flex-wrap: wrap; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 30px; border: 1px solid #e0e0e0; }
+        .exh-img { flex: 1; min-width: 300px; height: 250px; }
+        .exh-img img { width: 100%; height: 100%; object-fit: cover; }
+        .exh-info { flex: 2; padding: 25px; min-width: 300px; }
+        .web-btn { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 10px; }
+    </style> 
+            
+    <p class="tagline">शेती नियोजन, जोडधंदे आणि प्रदर्शनांची परिपूर्ण माहिती</p>
+
+    <span class="step-label">पायरी १: हंगाम निवडा</span>
+    <div class="btn-group">
+        <button class="choice-btn season-btn" onclick="handleSeason('kharif', this)">खरीप हंगाम</button>
+        <button class="choice-btn season-btn" onclick="handleSeason('rabi', this)">रब्बी हंगाम</button>
+        <button class="choice-btn season-btn" onclick="handleSeason('unhali', this)">उन्हाळी हंगाम</button>
+    </div>
+
+    <div id="soil-section" class="hidden">
+        <span class="step-label">पायरी २: जमिनीचा प्रकार निवडा</span>
+        <div class="btn-group">
+            <button class="choice-btn soil-btn" onclick="handleSoil('heavy', this)">भारी / काळी जमीन</button>
+            <button class="choice-btn soil-btn" onclick="handleSoil('medium', this)">मध्यम जमीन</button>
+            <button class="choice-btn soil-btn" onclick="handleSoil('light', this)">हलकी / बरड जमीन</button>
+        </div>
+    </div>
+
+    <div id="crop-display" class="hidden">
+        <span class="step-label">पायरी ३: पिकाची सविस्तर माहिती</span>
+        <div id="crop-list-container"></div>
+    </div>
+
+    <hr style="margin: 40px 0; border: 0; border-top: 2px dashed #ccc;">
+
+    <button class="special-btn biz" onclick="toggleSection('business-section')">💼 शेतीपूरक जोडधंदे पहा</button>
+    
+    <div id="business-section" class="hidden">
+        <span class="step-label">उपलब्ध जोडधंदे (अधिक माहितीसाठी नावावर क्लिक करा):</span>
+        <div class="info-card">
+            <div class="card-header" onclick="toggleCard(this)" style="background: #e1f5fe;">🐄 दुग्धव्यवसाय (Dairy Farming) <span>▼</span></div>
+            <div class="card-body">
+                <div class="detail-item"><span class="detail-label">महत्व:</span> शेतीला जोड देणारा सर्वात खात्रीशीर व्यवसाय. दररोज रोख उत्पन्न मिळते.</div>
+                <div class="detail-item"><span class="detail-label">जाती:</span> गीर, साहिवाल गाई किंवा मुरा, जाफराबादी म्हशींची निवड फायदेशीर ठरते.</div>
+                <div class="detail-item"><span class="detail-label">नियोजन:</span> जनावरांना संतुलित आहार, स्वच्छ गोठा आणि वेळेवर लसीकरण केल्यास दुध उत्पादनात वाढ होते.</div>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card-header" onclick="toggleCard(this)" style="background: #e1f5fe;">🐐 शेळीपालन (Goat Farming) <span>▼</span></div>
+            <div class="card-body">
+                <div class="detail-item"><span class="detail-label">महत्व:</span> कमी भांडवल आणि हलक्या जमिनीतही हा व्यवसाय उत्तम चालतो.</div>
+                <div class="detail-item"><span class="detail-label">जाती:</span> उस्मानाबादी, संगमनेरी किंवा बोअर जातीची निवड करावी.</div>
+                <div class="detail-item"><span class="detail-label">नफा:</span> वर्षाला दोनदा पिल्ले मिळतात आणि सणासुदीला बाजारभाव मोठ्या प्रमाणात वाढतो.</div>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="card-header" onclick="toggleCard(this)" style="background: #e1f5fe;">🐝 मधमक्षीपालन (Beekeeping) <span>▼</span></div>
+            <div class="card-body">
+                <div class="detail-item"><span class="detail-label">महत्व:</span> मधाच्या उत्पादनासोबतच पिकांचे परागीभवन होऊन शेती उत्पादनात २५% वाढ होते.</div>
+                <div class="detail-item"><span class="detail-label">फायदा:</span> याला कमी जागा लागते आणि मधाला बाजारात कायम मागणी असते.</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="special-btn" onclick="toggleSection('exhibition-content')">🔍 आगामी कृषी प्रदर्शने पहा</button>
+    
+    <div id="exhibition-content" class="hidden">
+        <div class="exhibition-card">
+            <div class="exh-info">
+                <h2>किसान कृषी प्रदर्शन, पुणे</h2>
+                <p>📅 <b>दिनांक:</b> १० - १४ डिसेंबर २०२६ | 📍 <b>ठिकाण:</b> मोशी, पुणे</p>
+                <p><b>खास वैशिष्ट्ये:</b> ड्रोन गॅलरी, ॲग्री स्टार्टअप्स आणि आधुनिक स्वयंचलित यंत्रांचे जिवंत प्रात्यक्षिक. हे भारतातील सर्वात मोठे प्रदर्शन आहे.</p>
+            
+            <a href="https://kisan.in" target="_blank" class="web-btn">🌐 अधिकृत वेबसाईट</a>
+           
+        </div>
+        </div>
+
+        <div class="exhibition-card">
+            <div class="exh-info">
+                <h2>कृषिक (Krushik) प्रदर्शन, बारामती</h2>
+                <p>📅 <b>दिनांक:</b> १८ - २२ जानेवारी २०२६ | 📍 <b>ठिकाण:</b> शारदानगर, बारामती</p>
+                <p><b>खास वैशिष्ट्ये:</b> १०० हून अधिक सुधारित पिकांचे प्रत्यक्ष प्लॉट (Live Demo), प्रगत पशुप्रदर्शन आणि ठिबक सिंचन तंत्रज्ञान.</p>
+                <a href="https://www.krushikbaramati.com/" target="_blank" class="web-btn">🌐 अधिकृत वेबसाईट</a>
+            </div>
+        </div>
+
+        <div class="exhibition-card">
+            <div class="exh-info">
+                <h2>महा-अ‍ॅग्रो एक्सपो, नाशिक</h2>
+                <p>📅 <b>दिनांक:</b> १५ - १८ फेब्रुवारी २०२६ | 📍 <b>ठिकाण:</b> ठक्कर डोम, नाशिक</p>
+                <p><b>खास वैशिष्ट्ये:</b> द्राक्ष बागायतदारांसाठी विशेष दालन आणि भाजीपाला निर्यात मार्गदर्शन केंद्र.</p>
+                <a href="https://www.krishithon.com/" target="_blank" class="web-btn">🌐 अधिकृत वेबसाईट</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="bajarbhav" class="page container">
+
+<style>
+.bajar-wrapper { 
+    max-width: 1100px; 
+    margin: auto; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 30px; 
+}
+
+.docs-panel { 
+    flex: 1; 
+    min-width: 320px; 
+    background: white; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    padding: 25px; 
+    border-left: 6px solid #1b5e20; 
+}
+
+.docs-panel h2 { 
+    color: #1b5e20; 
+}
+
+.doc-item { 
+    display: block; 
+    padding: 12px; 
+    margin-bottom: 10px; 
+    text-decoration: none; 
+    color: #333; 
+    border: 1px solid #eee; 
+    border-radius: 6px; 
+}
+
+.doc-item:hover { 
+    background: #f1f8e9; 
+}
+
+.calc-panel { 
+    flex: 1.5; 
+    min-width: 350px; 
+    background: white; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    padding: 25px; 
+}
+
+.result-grid { 
+    display: none; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 15px; 
+    margin-top: 20px; 
+}
+</style>
+
+<div class="bajar-wrapper">
+
+    <div class="docs-panel">
+        <h2>शासकीय पोर्टल</h2>
+        <a href="https://bhulekh.mahabhumi.gov.in/" target="_blank" class="doc-item">७/१२ उतारा</a>
+        <a href="https://pmfby.gov.in/" target="_blank" class="doc-item">पीक विमा</a>
+        <a href="https://myaadhaar.uidai.gov.in/" target="_blank" class="doc-item">आधार सेवा</a>
+    </div>
+
+    <div class="calc-panel">
+        <h2>जमीन मोजणी कॅल्क्युलेटर</h2>
+
+        <input type="number" id="lenInput" placeholder="लांबी (फूट)" style="width:100%; padding:10px; margin-bottom:10px;">
+        <input type="number" id="widInput" placeholder="रुंदी (फूट)" style="width:100%; padding:10px; margin-bottom:10px;">
+
+        <button onclick="performCalc()" 
+        style="width:100%; padding:12px; background:#1b5e20; color:white; border:none; border-radius:6px;">
+        क्षेत्रफळ मोजा
+        </button>
+
+        <div class="result-grid" id="resultArea">
+            <div>चौरस फूट: <b id="outSqft"></b></div>
+            <div>गुंठे: <b id="outGuntha"></b></div>
+            <div>एकर: <b id="outAcre"></b></div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+   <div id="avjare" class="page container">
+    <style>
+        .tech-menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .tech-card { 
+            background: white; padding: 30px 15px; border-radius: 12px; text-align: center; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; border-bottom: 5px solid #4caf50;
+            transition: 0.3s; font-weight: bold; color: #1b5e20; font-size: 1.2rem;
+        }
+        .tech-card:hover { transform: translateY(-5px); background: #1b5e20; color: white; }
+        
+        #techDetailView { display: none; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .explanation-box { background: #fffde7; padding: 20px; border-radius: 12px; border: 2px dashed #fbc02d; margin: 20px 0; }
+        .tech-grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; }
+        .usage-box { background: #eff6ff; padding: 15px; border-radius: 10px; border-left: 5px solid #2196f3; }
+        .benefit-box { background: #f0fdf4; padding: 15px; border-radius: 10px; border-left: 5px solid #4caf50; }
+        
+        @media (max-width: 768px) { .tech-grid-info { grid-template-columns: 1fr; } }
+    </style>
+
+    <div id="techListSection">
+        <h2 style="text-align: center; color: #1b5e20;">🚜 आधुनिक शेती तंत्रज्ञान</h2>
+        <p style="text-align: center;">खालीलपैकी कोणत्याही विषयावर क्लिक करून माहिती मिळवा:</p>
+        <div class="tech-menu-grid">
+            <div class="tech-card" onclick="openTechDetail('drone')">१. कृषी ड्रोन <br>(फवारण्यासाठी वापरले जाणारे) </div>
+            <div class="tech-card" onclick="openTechDetail('iot')">२. स्मार्ट सेन्सर्स (IoT) <br>(पाणी, माती अचूक माहिती)</div>
+            <div class="tech-card" onclick="openTechDetail('hydro')">३. हायड्रोपोनिक्स <br>(जमीनशिवाय शेती
+)</div>
+            <div class="tech-card" onclick="openTechDetail('robot')">४. अ‍ॅग्रि-रोबोटिक्स<br>(स्वयंचलित शेती
+)</div>
+            <div class="tech-card" onclick="openTechDetail('precision')">५. प्रिसिजन फार्मिंग<br>(तंतोतंत शेती
+)</div>
+            <div class="tech-card" onclick="openTechDetail('vertical')">६. व्हर्टिकल फार्मिंग<br>(कमी जागेत
+)</div>
+            <div class="tech-card" onclick="openTechDetail('solar')">७. सौर ऊर्जा<br>(विजे शिवाय)</div>
+            <div class="tech-card" onclick="openTechDetail('block')">८. ब्लॉकचेन मार्केटिंग<br>(व्यवहारांची पारदर्शकता)
+</div>
+        </div>
+    </div>
+
+    <div id="techDetailView">
+        <button style="margin: 15px; padding: 8px 15px; cursor: pointer; border-radius: 5px; border: none; background: #333; color: white;" onclick="closeTechDetail()">← मागे जा</button>
+        <div id="techDynamicContent"></div>
+    </div>
+</div>
+
+    <footer>
+        <p><strong>Agroguide - बळीराजाचा खरा मित्र</strong></p>
+        <p>&copy; २०२६ | माहिती केंद्र महाराष्ट्र</p>
+    </footer>
+
+    <script>
+        // Page Switching
+        function showPage(pageId, event) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.style.display = 'none');
+            const links = document.querySelectorAll('nav a');
+            links.forEach(l => l.classList.remove('active'));
+            document.getElementById(pageId).style.display = 'block';
+            if(event) event.currentTarget.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Tab Switching
+        function toggleYojna(tabId, event) {
+            const contents = document.querySelectorAll('.yojna-content');
+            contents.forEach(c => c.classList.remove('show-yojna'));
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(b => b.classList.remove('active-tab'));
+            document.getElementById(tabId).classList.add('show-yojna');
+            event.currentTarget.classList.add('active-tab');
+        }
+
+        // Advanced Validation & Attractive Feedback
+        function handleAdvanceSubmit() {
+    const name = document.getElementById('name').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const btnText = document.getElementById('btnText');
+    const loader = document.getElementById('loader');
+    const successMsg = document.getElementById('successMessage'); 
+
+    // Basic Validation
+    if (name === "" || mobile === "" || message === "") {
+        alert("कृपया सर्व माहिती भरा!");
+        return;
+    }
+
+    if (!/^[0-9]{10}$/.test(mobile)) {
+        alert("कृपया योग्य १० अंकी मोबाईल नंबर टाका!");
+        return;
+    }
+
+    // Button loading effect
+    btnText.innerText = "पाठवत आहे...";
+    loader.style.display = "inline-block";
+
+    // Fake Submit Delay (2 seconds)
+    setTimeout(() => {
+        loader.style.display = "none";
+        btnText.innerText = "संदेश पाठवा";
+
+        successMsg.style.display = "block";
+
+        // Form reset
+        document.getElementById("contactForm").reset();
+
+        // Success message auto hide after 4 seconds
+        setTimeout(() => {
+            successMsg.style.display = "none";
+        }, 4000);
+
+    }, 2000);
+}
+
+        // १. आधुनिक तंत्रज्ञानाची सर्व माहिती (Data)
+// १. आधुनिक तंत्रज्ञानाची सविस्तर माहिती (Agroguide Updated Data)
+const agricultureData = {
+    drone: {
+        title: "कृषी ड्रोन तंत्रज्ञान (Agri-Drones)",
+        img: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1200",
+        what: "ड्रोन हे हवेत उडणारे रिमोट कंट्रोल यंत्र आहे. शेतीमध्ये याचा वापर प्रामुख्याने फवारणी आणि पीक सर्वेक्षणासाठी केला जातो.",
+        how: "ड्रोनमध्ये १० लिटरची टाकी आणि सेन्सर्स असतात. हे यंत्र GPS द्वारे शेताचा नकाशा बनवून स्वयंचलितपणे फवारणी करते.",
+        u: [
+            "नॅनो युरिया आणि कीटकनाशकांची १० मिनिटांत १ एकर फवारणी करणे.",
+            "मल्टी-स्पेक्ट्रल कॅमेऱ्याद्वारे पिकांवरील रोग आणि कीड ओळखणे.",
+            "पिकाची वाढ आणि खतांची गरज तपासण्यासाठी मॅपिंग करणे."
+        ],
+        f: [
+            "औषधांशी थेट संपर्क नसल्याने शेतकऱ्याच्या आरोग्याचे रक्षण होते.",
+            "९०% पाण्याची आणि २५% औषधाची बचत होते.",
+            "वेळेची मोठी बचत होते (१ दिवसाचे काम १ तासात)."
+        ],
+
+howToBuy: [
+    "महा-डीबीटी (MahaDBT) पोर्टलवर सरकारी अनुदानासाठी अर्ज करा.",
+    "ड्रोन उडवण्याचे प्रशिक्षण घेतलेले प्रमाणपत्र मिळवा.",
+    "फक्त सरकारी मान्यताप्राप्त (DGCA Approved) कंपन्यांकडूनच ड्रोन खरेदी करा."
+]
+    },
+    iot: {
+        title: "स्मार्ट सेन्सर्स (IoT Farming)",
+        img: "sensor.jpeg",
+        what: "हे शेताचे 'डिजिटल डॉक्टर' आहेत. इंटरनेटशी जोडलेले सेन्सर्स मातीतील हालचालींवर लक्ष ठेवतात.",
+        how: "मातीत ओलावा कमी झाला की सेन्सर मोबाईलवर मेसेज पाठवतो. तुम्ही घरूनच 'ऑटो-स्टार्टर' द्वारे मोटर चालू किंवा बंद करू शकता.",
+        u: [
+            "मातीतील ओलावा, तापमान आणि जमिनीचा पीएच (pH) मोजणे.",
+            "हवामानाचा अंदाज घेऊन पिकाला किती पाणी द्यावे हे ठरवणे.",
+            "विहिरीतील किंवा टाकीतील पाण्याची पातळी मोजणे."
+        ],
+        f: [
+            "पाणी आणि विजेच्या बिलात मोठी बचत होते.",
+            "पिकाला ओव्हर-वॉटरिंग (अति पाणी) होण्यापासून वाचवता येते.",
+            "गरजेनुसार खते दिल्याने उत्पादनात २०-३०% वाढ होते."
+        ],
+        howToBuy: [
+    "स्थानिक कृषी विज्ञान केंद्राकडून (KVK) तुमच्या जमिनीसाठी योग्य सेन्सर निवडा.",
+    "अ‍ॅग्रो-टेक कंपन्यांना संपर्क करून त्यांच्या सर्व्हिसबद्दल खात्री करा.",
+    "मोबाईलवर चालणारे आणि सोपे सॉफ्टवेअर असलेले सेन्सर्स खरेदी करा."
+]
+    },
+    hydro: {
+        title: "हायड्रोपोनिक्स (मातीविना शेती)",
+        img: "hydroponics.jpeg",
+        what: "ही मातीशिवाय केवळ पोषक घटक असलेल्या पाण्यात केली जाणारी आधुनिक शेती आहे.",
+        how: "झाडांची मुळे थेट पाण्यात असतात. त्या पाण्यात आवश्यक खनिजे मिसळली जातात, ज्यामुळे झाडांना वेगाने अन्न मिळते.",
+        u: [
+            "शहरी भागात बाल्कनी किंवा गच्चीवर भाजीपाला पिकवणे.",
+            "दुष्काळी भागात पशुधनासाठी पौष्टिक हिरवा चारा तयार करणे.",
+            "विदेशी भाज्या (लेट्यूस, ब्रोकोली) आणि स्ट्रॉबेरीचे उत्पादन घेणे."
+        ],
+        f: [
+            "पारंपारिक शेतीपेक्षा ९५% कमी पाणी लागते.",
+            "माती नसल्यामुळे जमिनीतून होणारे रोग पूर्णपणे टळतात.",
+            "कमी जागेत आणि कमी वेळात जास्त उत्पादन मिळते."
+        ],
+        howToBuy: [
+    "सुरुवातीला छोटे घरगुती किट घेऊन सराव करा.",
+    "अनुदानासाठी राष्ट्रीय फलोत्पादन बोर्डाकडे (NHB) चौकशी करा.",
+    "चांगल्या दर्जाचे पाण्याचे फिल्टर आणि खते पुरवणाऱ्या कडूनच सेटअप घ्या."
+]
+    },
+    robot: { 
+        title: "अ‍ॅग्रि-रोबोटिक्स (Agri-Robots)", 
+        img: "robot.jpeg", 
+        what: "शेतात कष्टकरी मजुरांप्रमाणे काम करणारे स्वयंचलित यंत्रमानव.", 
+        how: "हे रोबोट्स कॅमेऱ्याच्या मदतीने गवत आणि पीक ओळखतात आणि फक्त गवत उपटून टाकतात.", 
+        u: [
+            "शेतातील तण (गवत) काढणे आणि फळांची तोडणी करणे.", 
+            "पिकांची कापणी आणि पॅकिंग स्वयंचलितपणे करणे."
+        ], 
+        f: [
+            "मजुरांच्या टंचाईवर हा कायमस्वरूपी उपाय आहे.", 
+            "हे यंत्र २४ तास न थकता अचूक काम करू शकते."
+        ],
+        howToBuy: [
+    "तुमच्या शेतीला आवश्यक असलेल्या कामाचा (उदा. गवत काढणे) रोबोट निवडा.",
+    "कंपनीकडून शेतावर प्रत्यक्ष डेमो (Trial) मागवून घ्या.",
+    "मशिन बिघडल्यास दुरुस्तीची सोय जवळ आहे का ते तपासा."
+]
+    },
+    precision: { 
+        title: "प्रिसिजन फार्मिंग (अचूक शेती)", 
+        img: "high.jpeg", 
+        what: "प्रत्येक रोपाला काय हवे आहे हे ओळखून केली जाणारी शास्त्रशुद्ध शेती.", 
+        how: "सॅटेलाईट डेटा आणि माती परीक्षणाच्या आधारे फक्त जिथे गरज आहे तिथेच औषध आणि पाणी दिले जाते.", 
+        u: [
+            "खतांचे अचूक व्यवस्थापन करणे.", 
+            "जमिनीचा सुपीकपणा वाढवण्यासाठी डेटाचा वापर करणे."
+        ], 
+        f: [
+            "शेतीचा एकूण खर्च (खते/बियाणांवरचा) ४०% ने कमी होतो.", 
+            "उत्पादनाचा दर्जा आणि प्रत (Quality) सुधारते."
+        ] 
+    },
+    vertical: { 
+        title: "व्हर्टिकल फार्मिंग (मजलेदार शेती)", 
+        img: "vertical.jpeg", 
+        what: "एकावर एक रॅक लावून इमारतीमध्ये केली जाणारी शेती.", 
+        how: "नैसर्गिक सूर्यप्रकाशाऐवजी विशेष LED लाईट्स वापरून पिकांना प्रकाश दिला जातो.", 
+        u: [
+            "मोठ्या शहरांमध्ये ताज्या भाज्यांचा पुरवठा करणे.", 
+            "कमी जमिनीत १० पट जास्त उत्पादन मिळवणे."
+        ], 
+        f: [
+            "हवामानातील बदलांचा पिकावर कोणताही परिणाम होत नाही.", 
+            "कीटकनाशकांचा वापर जवळजवळ शून्य असतो."
+        ] 
+    },
+    solar: { 
+        title: "सौर ऊर्जा शेती (Solar Energy)", 
+        img: "solar.jpeg", 
+        what: "सूर्यापासून वीज बनवून शेतीची उपकरणे चालवणे.", 
+        how: "सोलर प्लेट्स बसवून दिवसा वीज तयार केली जाते, ज्यामुळे डिझेल किंवा महावितरणच्या विजेची गरज उरत नाही.", 
+        u: [
+            "सोलर पंप चालवून शेताला पाणी देणे.", 
+            "शेतातील वीज कुंपण (Fencing) आणि दिवे लावणे."
+        ], 
+        f: [
+            "शून्य वीज बिल आणि डिझेलचा खर्च वाचतो.", 
+            "रात्रीच्या वेळी शेतात पाणी भरण्यासाठी जाण्याचा धोका टळतो."
+        ],
+        howToBuy: [
+    "कुसुम (KUSUM) योजनेच्या अधिकृत वेबसाईटवर नोंदणी करा.",
+    "आधार कार्ड, ७/१२ उतारा आणि बँक पासबुक तयार ठेवा.",
+    "शासनाने नेमून दिलेल्या कंपनीकडूनच पंप बसवून घ्या."
+]
+        
+    },
+    block: { 
+        title: "ब्लॉकचेन मार्केटिंग", 
+        img: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200", 
+        what: "शेतीमालाच्या खरेदी-विक्रीची पारदर्शक डिजिटल पद्धत.", 
+        how: "पिकाच्या बॅगवर QR कोड असतो. तो स्कॅन केल्यावर ग्राहकाला पीक कधी लावले आणि कोणती खते वापरली हे समजते.", 
+        u: [
+            "शेतमालाची थेट ग्राहकाला किंवा परदेशात निर्यात करणे.", 
+            "मालाची विश्वासार्हता वाढवून चांगला ब्रँड तयार करणे."
+        ], 
+        f: [
+            "मध्यस्थ (दलाल) नसल्यामुळे शेतकऱ्याला जादा भाव मिळतो.", 
+            "पेमेंट सुरक्षित आणि जलद होते."
+        ] 
+    }
+};
+
+// २. माहिती दाखवण्यासाठी फंक्शन (Updated with Calculator)
+// इथून सिलेक्ट करा...
+function openTechDetail(id) {
+    const item = agricultureData[id];
+    document.getElementById('techListSection').style.display = 'none';
+    document.getElementById('techDetailView').style.display = 'block';
+    
+    let dynamicHTML = `
+        <img src="${item.img}" style="width:50%; height:300px; object-fit:cover;">
+        <div style="padding:20px;">
+            <h2 style="color:#1b5e20; margin-top:0;">${item.title}</h2>
+            
+            <div class="explanation-box" style="background:#f1f8e9; padding:15px; border-radius:8px; margin-bottom:15px;">
+                <strong>हे काय आहे?</strong> <p>${item.what}</p>
+                <hr style="border:0; border-top:1px solid #ddd; margin:10px 0;">
+                <strong>कसे काम करते?</strong> <p>${item.how}</p>
+            </div>
+
+            <div class="tech-grid-info" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div class="usage-box" style="flex: 1; min-width: 250px;">
+                    <strong>🎯 उपयोग:</strong> 
+                    <ul>${item.u.map(i => `<li>${i}</li>`).join('')}</ul>
+                </div>
+                <div class="benefit-box" style="flex: 1; min-width: 250px;">
+                    <strong>✅ फायदे:</strong> 
+                    <ul>${item.f.map(i => `<li>${i}</li>`).join('')}</ul>
+                </div>
+            </div>`
+            
+if (item.howToBuy) {
+    dynamicHTML += `
+        <div class="purchase-box" style="margin-top:25px; background:#fff8e1; border: 1px solid #ffe082; border-left:6px solid #f57c00; padding:15px; border-radius:10px;">
+            <h4 style="color:#f57c00; margin:0 0 10px 0; font-size:18px;">
+                <i class="fas fa-shopping-cart"></i> खरेदी कशी करावी? (महत्वाच्या स्टेप्स)
+            </h4>
+            <ul style="margin:0; padding-left:20px; color:#333; line-height:1.6;">
+                ${item.howToBuy.map(step => `<li style="margin-bottom:8px; font-weight:500;">${step}</li>`).join('')}
+            </ul>
+        </div>
+    `;
+}
+// -----------------------
+    
+
+    // फक्त या ४ तंत्रज्ञानांसाठी कॅल्क्युलेटर दिसेल
+    const techWithCalc = ['drone', 'robot', 'solar', 'iot'];
+
+    if (techWithCalc.includes(id)) {
+        dynamicHTML += `
+            <div class="calculator-box" style="background:#fffde7; border:2px dashed #fbc02d; padding:20px; margin-top:30px; border-radius:12px;">
+                <h3 style="margin-top:0; color:#f57f17;">📊 Agroguide बचत कॅल्क्युलेटर</h3>
+                <p>तुमचे क्षेत्रफळ (एकरमध्ये) टाकून होणारी बचत तपासा:</p>
+                <div style="display:flex; gap:10px;">
+                    <input type="number" id="acreInput" placeholder="उदा. २" style="flex:1; padding:12px; border-radius:8px; border:1px solid #ccc; font-size:16px;">
+                    <button onclick="calculateSavings('${id}', document.getElementById('acreInput').value)" 
+                        style="background:#2e7d32; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold;">
+                        बचत मोजा
+                    </button>
+                </div>
+                <div id="calcResult" style="margin-top:15px;"></div>
+            </div>
+        `;
+    }
+
+    dynamicHTML += `</div>`;
+    document.getElementById('techDynamicContent').innerHTML = dynamicHTML;
+    window.scrollTo(0,0);
+}
+
+// ३. परत यादीवर जाण्यासाठी फंक्शन
+function closeTechDetail() {
+    document.getElementById('techListSection').style.display = 'block';
+    document.getElementById('techDetailView').style.display = 'none';
+    window.scrollTo(0,0);
+} 
+// हे फंक्शन पूर्णपणे अपडेट करा
+function calculateSavings(techId, acres) {
+    if (!acres || acres <= 0) {
+        alert("कृपया योग्य एकर संख्या टाका!");
+        return;
+    }
+    
+    const item = agricultureData[techId];
+    let resultHTML = "";
+
+    if (techId === 'drone') {
+        let manual = 800 * acres; 
+        let drone = 500 * acres;  
+        let savings = manual - drone;
+        resultHTML = createResultCard("ड्रोन फवारणी रिपोर्ट", manual, drone, savings, `💧 पाणी बचत: ${180 * acres} लिटर`);
+
+    } else if (techId === 'robot') {
+        let manualLabor = 2500 * acres; 
+        let robotRent = 1200 * acres;   
+        let savings = manualLabor - robotRent;
+        resultHTML = createResultCard("अ‍ॅग्रि-रोबोटिक्स रिपोर्ट", manualLabor, robotRent, savings, `⏱️ वेळेची बचत: साधारण १५ तास`);
+
+    } else if (techId === 'solar') {
+        let dieselCost = 3000 * acres; 
+        let solarCost = 0;             
+        let savings = dieselCost;
+        resultHTML = createResultCard("सौर ऊर्जा बचत रिपोर्ट", dieselCost, solarCost, savings, `☀️ दिवसा सिंचन सुविधा उपलब्ध`);
+
+    } else if (techId === 'iot') {
+        let wasteCost = 1500 * acres; 
+        let smartCost = 400 * acres;  
+        let savings = wasteCost - smartCost;
+        resultHTML = createResultCard("स्मार्ट IoT रिपोर्ट", wasteCost, smartCost, savings, `📉 खतांचा २५% कमी वापर`);
+    }
+    
+    document.getElementById('calcResult').innerHTML = resultHTML;
+}
+
+// हे कार्ड बनवण्यासाठी मदत करणारे छोटे फंक्शन (हे देखील पेस्ट करा)
+function createResultCard(title, oldCost, newCost, savings, extraInfo) {
+    return `
+        <div style="background:white; padding:15px; border-radius:8px; border-left:5px solid #2e7d32; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <b style="color:#2e7d32;">${title}</b><br>
+            जुना अंदाजे खर्च: ₹${oldCost}<br>
+            नवीन तंत्रज्ञान खर्च: ₹${newCost}<br>
+            <b>एकूण बचत: ₹${savings} /-</b><br>
+            <small style="color:#1565c0;">${extraInfo}</small>
+        </div>`;
+}
+// रिझल्ट कार्ड बनवण्यासाठी एक सोपे सपोर्ट फंक्शन
+function createResultCard(title, oldCost, newCost, savings, extraInfo) {
+    return `
+        <div style="background:white; padding:15px; border-radius:8px; border-left:5px solid #2e7d32; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <b style="color:#2e7d32; font-size:16px;">${title}</b><br>
+            <span style="color:#777;">जुना अंदाजे खर्च:</span> ₹${oldCost}<br>
+            <span style="color:#777;">नवीन तंत्रज्ञान खर्च:</span> ₹${newCost}<br>
+            <b style="font-size:18px;">तुमची एकूण बचत: ₹${savings} /-</b><br>
+            <small style="color:#1565c0; font-weight:bold;">${extraInfo}</small>
+        </div>`;
+}
+    function performCalc() {
+    const l = parseFloat(document.getElementById('lenInput').value);
+    const w = parseFloat(document.getElementById('widInput').value);
+
+    if (l > 0 && w > 0) {
+        const sqft = l * w;
+        const guntha = (sqft / 1089).toFixed(2);
+        const acre = (guntha / 40).toFixed(2);
+
+        document.getElementById('outSqft').innerText = sqft;
+        document.getElementById('outGuntha').innerText = guntha;
+        document.getElementById('outAcre').innerText = acre;
+
+        document.getElementById('resultArea').style.display = 'grid';
+    } else {
+        alert("कृपया योग्य माहिती भरा.");
+    }
+}
+ const cropData = {
+        'kharif-heavy': [{
+            name: 'कापूस (Cotton)',
+            duration: 'कापूस हे पीक १६० ते १८० दिवसांचे असून भारी जमिनीत ते उत्तम प्रतिसाद देते. जमिनीतील ओलावा टिकवून ठेवण्याची क्षमता कापसाच्या बोंड भरण्यासाठी पोषक ठरते.',
+            varieties: 'राशी ६५९ किंवा अजित १५५ या वाणांची निवड करावी. ५ x १.५ फूट अंतरावर लागवड करून बियाण्यास थायोमिथोक्सामची बीजप्रक्रिया आवर्जून करावी.',
+            fertilizer: 'हेक्टरी १००:५०:५० नत्र, स्फुरद, पालाश द्यावे. नत्राचा हप्ता तीन वेळा विभागून दिल्यास झाडाची शाखीय वाढ जोमाने होते.',
+            spraying: '३० दिवसांनी माव्यासाठी इमिडाक्लोप्रिड, तर ७० दिवसांनी गुलाबी बोंड अळीसाठी प्रोफेनोफॉसची फवारणी करावी. शेवटच्या टप्प्यात बोंड सड रोखण्यासाठी कॉपरयुक्त बुरशीनाशके वापरावीत.',
+            watering: 'भारी जमिनीत १५-२० दिवसांनी पाणी द्यावे. पाते आणि फुले लागण्याच्या संवेदनशील काळात जमिनीला पाण्याचा ताण पडू देऊ नका.',
+            harvesting: 'बोंडे फुटल्यावर कोरड्या हवामानात वेचणी करावी. कापूस काढताना पालापाचोळा मिसळणार नाही याची काळजी घ्यावी.',
+            yield: 'योग्य नियोजनासह १८ ते २२ क्विंटल प्रति हेक्टरी उत्पादन मिळते.'
+        }],
+        'kharif-medium': [{
+            name: 'सोयाबीन (Soybean)',
+            duration: 'सोयाबीनचा कालावधी १०० ते १०५ दिवसांचा असतो. मध्यम जमिनीत निचरा चांगला होत असल्याने पीक मरत नाही आणि जोमाने वाढते.',
+            varieties: 'फुले संगम (KDS-726) वाणाची निवड करावी. ४५ x ५ सेमी अंतरावर बीबीएफ यंत्राने पेरणी केल्यास पावसाच्या लहरीपणाचा फटका बसत नाही.',
+            fertilizer: 'पेरणीवेळी ५०:७५:४० नत्र, स्फुरद आणि पालाश द्यावे. सोयाबीनला २० किलो गंधक दिल्यास तेलाचे प्रमाण आणि दाण्यांचे वजन वाढते.',
+            spraying: '२० दिवसांनी चक्री भुंग्यासाठी थायोमिथोक्साम वापरावे. शेंगा भरताना कोराजनची फवारणी केल्यास अळीपासून संरक्षण मिळते.',
+            watering: 'शेंगा भरण्याच्या अवस्थेत पाण्याची कमतरता भासल्यास उत्पादनात मोठी घट होते, त्यामुळे या काळात जमिनीतील ओलावा टिकवून ठेवावा.',
+            harvesting: 'पाने पिवळी पडून गळू लागल्यावर आणि शेंगांचा आवाज यायला लागल्यावर त्वरित कापणी करावी.',
+            yield: 'हेक्टरी २५ ते ३० क्विंटल उत्पादन सहज शक्य आहे.'
+        }],
+        'kharif-light': [{
+            name: 'बाजरी (Bajra)',
+            duration: 'बाजरी हे पीक ८० ते ९० दिवसांत तयार होते. हलक्या आणि बरड जमिनीत जिथे पाण्याची उपलब्धता कमी आहे, तिथे हे पीक हमखास उत्पन्न देते.',
+            varieties: 'श्रद्धा किंवा सबुरी या संकरित वाणांची निवड करावी. ३० x १० सेमी अंतरावर पेरणी करून हेक्टरी १० किलो बियाणे वापरावे.',
+            fertilizer: 'पेरणीवेळी ४० किलो नत्र आणि २० किलो स्फुरद द्यावे. पीक ३० दिवसांचे झाल्यावर उरलेले नत्र दिल्यास कणसे मोठी होतात.',
+            spraying: 'बाजरीवर मुख्यत्वे मावा किंवा तुडतुडे येतात, त्यासाठी डायमेथोएटची फवारणी करावी.',
+            watering: 'हे पीक पावसावर येते, तरीही दाणे भरण्याच्या काळात पाणी दिल्यास उत्पादनात २०-३० टक्क्यांनी वाढ होते.',
+            harvesting: 'कणसे पिवळी पडून दाणा कडक झाला की कापणी करावी.',
+            yield: 'हलकाय जमिनीतही १५ ते १८ क्विंटल उत्पादन मिळते.'
+        }],
+        'rabi-heavy': [{
+            name: 'बागायती गहू (Wheat)',
+            duration: 'गव्हाचा कालावधी ११० ते १२० दिवसांचा असतो. भारी काळी जमीन आणि थंडीचे हवामान गव्हाच्या वाढीसाठी अत्यंत अनुकूल असते.',
+            varieties: 'त्र्यंबक किंवा समाधान या वाणांची १८ ते २२ सेमी अंतरावर पेरणी करावी. पेरणी नोव्हेंबरच्या पहिल्या पंधरवड्यात करणे फायद्याचे ठरते.',
+            fertilizer: '१२०:६०:४० नत्र, स्फुरद, पालाश द्यावे. पेरणीनंतर २१ दिवसांनी नत्राचा दुसरा हप्ता दिल्यास फुटवे चांगले येतात.',
+            spraying: '२१ ते ३० दिवसांनी तणनाशकाचा वापर करावा. ६० दिवसांनंतर तांबेरा रोगासाठी प्रोपिकोनाझोलची प्रतिबंधात्मक फवारणी करावी.',
+            watering: 'मुकुटमुळे फुटणे आणि दाणे भरणे या अवस्थांना पाणी देणे अनिवार्य आहे.',
+            harvesting: 'दाणा नखांनी तुटणार नाही इतका कडक झाला की कापणी करावी.',
+            yield: 'हेक्टरी ४० ते ४५ क्विंटल उत्पादन मिळते.'
+        }],
+        'rabi-medium': [{
+            name: 'रब्बी ज्वारी (Jowar)',
+            duration: 'ज्वारीचा कालावधी १२० ते १२५ दिवसांचा असतो. मध्यम जमिनीत रब्बी हंगामात ज्वारीचे पीक चारा आणि दाणे या दोन्हीसाठी उत्तम ठरते.',
+            varieties: 'फुले वसुधा किंवा मालदांडी ३५-१ या वाणांची निवड करावी. ४५ x १५ सेमी अंतरावर पेरणी करून जमिनीतील ओलावा जपून ठेवावा.',
+            fertilizer: 'पेरणीवेळी ८०:४०:४० नत्र, स्फुरद आणि पालाश द्यावे.',
+            spraying: 'सुरुवातीच्या काळात खोडमाशीचा प्रादुर्भाव होतो, त्यासाठी पेरणीवेळी फोरेट किंवा फवारणीसाठी क्विनालफॉस वापरावे.',
+            watering: 'पेरणीनंतर ३०-३५ दिवसांनी आणि पोटरीत असताना (५५-६० दिवस) पाणी दिल्यास कणसाचा आकार मोठा होतो.',
+            harvesting: 'कणसे वाळल्यानंतर आणि दाण्यावर काळा ठिपका आल्यावर कापणी करावी.',
+            yield: 'बागायतीसाठी ३० ते ३५ क्विंटल उत्पादन अपेक्षित असते.'
+        }],
+        'rabi-light': [{
+            name: 'हरभरा (Gram)',
+            duration: 'हरभरा १認० दिवसांचे पीक असून हलक्या जमिनीत कमी ओलाव्यावर तग धरते. मुळांवरील गाठींमुळे जमीन सुपीक होण्यास मदत होते.',
+            varieties: 'विजय किंवा फुले विक्रम या वाणांची ३० x १० सेमी अंतरावर पेरणी करावी.',
+            fertilizer: 'पेरणीवेळी २५ किलो नत्र आणि ५० किलो स्फुरद द्यावे.',
+            spraying: 'घाटा अळी हे मुख्य संकट असते, त्यासाठी ३० आणि ५० दिवसांनी इमामेक्टिन बेंझोएटची फवारणी प्रभावी ठरते.',
+            watering: 'हलकी जमीन असल्यास फुलोरा आणि शेंगा भरताना दोन हलकी पाणी द्यावीत.',
+            harvesting: 'झाड पिवळे पडून वाळल्यावर उपटून किंवा कापून मळणी करावी.',
+            yield: 'हलक्या जमिनीत १२ ते १५ क्विंटल उत्पादन मिळते.'
+        }],
+        'unhali-heavy': [{
+            name: 'उन्हाळी मका (Maize)',
+            duration: 'मका ११५ दिवसांचे पीक असून उन्हाळ्यात भारी जमिनीत ते जोमाने वाढते. चाऱ्यासाठी आणि दाण्यांसाठी उत्तम.',
+            varieties: 'पायोनियर ३३९६ किंवा को-६ यांसारख्या अधिक उत्पादन देणाऱ्या वाणांची ६० x २० सेमी अंतरावर लागवड करावी.',
+            fertilizer: '१२०:६०:४० नत्र, स्फुरद, पालाश द्यावे.',
+            spraying: 'लष्करी अळी नियंत्रणासाठी पेरणीनंतर १५ दिवसांनी कोराजन किंवा डेलिगेटची फवारणी करणे अत्यंत आवश्यक आहे.',
+            watering: 'उन्हाळ्यात ८-१० दिवसांनी नियमित पाणी द्यावे. तुरा येण्याच्या काळात पाणी तोडू नये.',
+            harvesting: 'कणसाचे बाहेरील आवरण पांढरे पडल्यावर तोडणी करावी.',
+            yield: 'हेक्टरी ५० ते ६० क्विंटलपर्यंत उत्पादन मिळू शकते.'
+        }],
+        'unhali-medium': [{
+            name: 'उन्हाळी भुईमूग (Groundnut)',
+            duration: 'भुईमुगाचा कालावधी १२५ दिवसांचा असतो. उन्हाळ्यात मध्यम जमिनीत भुईमुगाचे पीक कीड आणि रोगांना कमी बळी पडते.',
+            varieties: 'फुले उन्नती किंवा टीजी-२६ वाणाची ३० x १० सेमी अंतरावर टोकण करावी.',
+            fertilizer: 'पेरणीवेळी २५ किलो नत्र आणि ५० किलो स्फुरद द्यावे. ५० दिवसांनी हेक्टरी ४०० किलो जिप्सम द्यावा.',
+            spraying: 'टिक्का आणि तांबेरा रोगासाठी ३० दिवसांनी मॅन्कोझेब फवारावे.',
+            watering: '१० दिवसांच्या अंतराने नियमित पाणी द्यावे. आऱ्या जमिनीत शिरताना जमीन मऊ असणे गरजेचे असते.',
+            harvesting: 'पाने पिवळी पडून शेंगेचे टरफल आतून काळे पडले की काढणी करावी.',
+            yield: 'हेक्टरी ३० ते ३५ क्विंटल उत्पादन मिळते.'
+        }],
+        'unhali-light': [{
+            name: 'उन्हाळी मूग (Green Gram)',
+            duration: 'मूग हे ७० दिवसांचे अल्प कालावधीचे पीक आहे. उन्हाळ्यात हलक्या जमिनीत कमी पाण्यात उत्तम परतावा देते.',
+            varieties: 'वैभव किंवा पीकेव्ही मुंग ८८०२ या वाणांची ३० x १० सेमी अंतरावर पेरणी करावी.',
+            fertilizer: 'पेरणीच्या वेळी २० किलो नत्र आणि ४० किलो स्फुरद द्यावे.',
+            spraying: 'भुरी रोगाचा प्रादुर्भाव उन्हाळ्यात जास्त होतो, त्यासाठी पाण्यात विरघळणारे गंधक फवारावे.',
+            watering: 'हलकी जमीन असल्याने ७-८ दिवसांनी पाणी द्यावे.',
+            harvesting: '७५% शेंगा वाळल्यावर पहिली तोडणी करावी.',
+            yield: 'प्रति हेक्टरी १० ते १२ क्विंटल उत्पादन मिळते.'
+        }]
+    };
+
+    function handleSeason(season, btn) {
+        document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('crop-display').classList.add('hidden');
+        document.getElementById('exhibition-content').classList.add('hidden');
+        document.getElementById('business-section').classList.add('hidden');
+        document.getElementById('soil-section').classList.remove('hidden');
+    }
+
+    function handleSoil(soil, btn) {
+        document.querySelectorAll('.soil-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('exhibition-content').classList.add('hidden');
+        document.getElementById('business-section').classList.add('hidden');
+        displayCrops(soil);
+    }
+
+    function displayCrops(soil) {
+        const season = document.querySelector('.season-btn.active').getAttribute('onclick').match(/'([^']+)'/)[1];
+        const key = `${season}-${soil}`;
+        const container = document.getElementById('crop-list-container');
+        container.innerHTML = '';
+        const crops = cropData[key] || [];
+
+        crops.forEach(crop => {
+            container.innerHTML += `
+                <div class="info-card">
+                    <div class="card-header" onclick="toggleCard(this)">${crop.name} <span>▼</span></div>
+                    <div class="card-body">
+                        <div class="detail-item"><span class="detail-label">१. कालावधी आणि महत्त्व:</span><p class="detail-text">${crop.duration}</p></div>
+                        <div class="detail-item"><span class="detail-label">२. जाती व पेरणी:</span><p class="detail-text">${crop.varieties}</p></div>
+                        <div class="detail-item"><span class="detail-label">३. खत व्यवस्थापन:</span><p class="detail-text">${crop.fertilizer}</p></div>
+                        <div class="detail-item"><span class="detail-label">४. फवारणी नियोजन:</span><p class="detail-text">${crop.spraying}</p></div>
+                        <div class="detail-item"><span class="detail-label">५. पाणी व्यवस्थापन:</span><p class="detail-text">${crop.watering}</p></div>
+                        <div class="detail-item"><span class="detail-label">६. कापणी व साठवणूक:</span><p class="detail-text">${crop.harvesting}</p></div>
+                        <div class="detail-item" style="background:#e8f5e9;"><span class="detail-label">७. अपेक्षित उत्पादन:</span><p class="detail-text"><b>${crop.yield}</b></p></div>
+                    </div>
+                </div>`;
+        });
+        document.getElementById('crop-display').classList.remove('hidden');
+    }
+
+    // विभाग उघडणे किंवा बंद करणे (Main Sections)
+    function toggleSection(sectionId) {
+        const sections = ['crop-display', 'exhibition-content', 'business-section', 'soil-section'];
+        const target = document.getElementById(sectionId);
+        const isAlreadyVisible = !target.classList.contains('hidden');
+
+        // सर्व लपवा
+        sections.forEach(id => {
+            if(id !== 'soil-section' || sectionId === 'exhibition-content' || sectionId === 'business-section') {
+                document.getElementById(id).classList.add('hidden');
+            }
+        });
+
+        // जर आधी लपवलेले असेल तर दाखवा
+        if (!isAlreadyVisible) {
+            target.classList.remove('hidden');
+            window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
+        }
+    }
+
+    // कार्ड उघडणे (Individual Cards)
+    function toggleCard(header) {
+        const body = header.nextElementSibling;
+        const isVisible = body.style.display === 'block';
+        // एकाच वेळी एकच कार्ड उघडे ठेवण्यासाठी खालील ओळ वापरू शकता:
+        // document.querySelectorAll('.card-body').forEach(b => b.style.display = 'none');
+        body.style.display = isVisible ? 'none' : 'block';
+    }
+    // प्रश्नांची उत्तरे
+const faqAnswers = {
+    'low_cost': 'कमी खर्चात शेती करण्यासाठी रासायनिक खतांऐवजी घरगुती जीवामृत, शेणखत आणि घरचे बियाणे वापरा. तसेच मशागतीसाठी आधुनिक यंत्रांचा सामूहिक वापर करा.',
+    'soil_test': 'माती परीक्षण तुमच्या जिल्ह्यातील "शासकीय मृद चाचणी प्रयोगशाळेत" किंवा "कृषी विज्ञान केंद्रात" (KVK) करा. उन्हाळ्यात नमुना घेणे जास्त फायदेशीर ठरते.',
+    'organic': 'सेंद्रिय शेतीसाठी हळूहळू रासायनिक खते कमी करा. दशपर्णी अर्क, निमार्क आणि गांडूळ खताचा वापर वाढवा. जमिनीला ओलावा ठेवण्यासाठी आच्छादन (Mulching) करा.',
+    'pest_mgmt': 'कीड रोखण्यासाठी पिवळे/निळे चिकट सापळे, कामगंध सापळे आणि प्रकाश सापळ्यांचा वापर करा. यामुळे महागड्या औषधांची गरज पडत नाही आणि खर्च वाचतो.'
+};
+
+// प्रश्न निवडताच उत्तर दाखवणे
+function showAutoAnswer() {
+    const select = document.getElementById('questionSelect');
+    const answerBox = document.getElementById('autoAnswerBox');
+    const answerText = document.getElementById('answerText');
+    
+    if (select.value && faqAnswers[select.value]) {
+        answerText.innerText = faqAnswers[select.value];
+        answerBox.style.display = 'block';
+    } else {
+        answerBox.style.display = 'none';
+    }
+}
+
+// सबमिट बटण क्लिक केल्यावर
+function handleAgriSubmit() {
+    const name = document.getElementById('name').value;
+    const mobile = document.getElementById('mobile').value;
+    const question = document.getElementById('questionSelect').value;
+    const btnText = document.getElementById('btnText');
+    const successMsg = document.getElementById('successMessage');
+
+    if (name === "" || mobile.length < 10 || question === "") {
+        alert("कृपया नाव, १० अंकी मोबाईल नंबर आणि प्रश्न निवडा!");
+        return;
+    }
+
+    btnText.innerText = "प्रक्रिया सुरू आहे...";
+    
+    setTimeout(() => {
+        btnText.innerText = "माहिती जतन करा";
+        successMsg.style.display = "block";
+        
+        // फॉर्म रिसेट
+        document.getElementById("agriForm").reset();
+        document.getElementById("autoAnswerBox").style.display = "none";
+
+        setTimeout(() => {
+            successMsg.style.display = "none";
+        }, 4000);
+    }, 1500);
+}
+   
+        </script>
+        </body>
+        </html>
